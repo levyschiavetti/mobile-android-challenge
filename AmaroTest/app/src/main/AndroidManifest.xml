@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-          package="com.test.amaro.amarotest"
-    >
+      package="com.test.amaro.amarotest">
 
     <application
         android:allowBackup="true"
