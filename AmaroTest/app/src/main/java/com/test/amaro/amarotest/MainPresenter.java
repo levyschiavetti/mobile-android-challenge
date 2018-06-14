@@ -92,11 +92,33 @@ public class MainPresenter implements MainContract.Presenter,
 
     @Override
     public List<ResponseList.Product> assignPriceValues(List<ResponseList.Product> list) {
-        return null;
+
+        for (ResponseList.Product product : list) {
+
+            String priceString = product.getPriceRegular()
+                    .replace("R$", "")
+                    .replace(",",".")
+                    .trim();
+
+            Double price = Double.parseDouble(priceString);
+
+            product.setPrice(price);
+        }
+
+        return list;
+
     }
 
     @Override
     public List<ResponseList.Product> sortListByPrice(List<ResponseList.Product> list) {
-        return null;
+
+        Collections.sort(list, new Comparator<ResponseList.Product>() {
+            @Override
+            public int compare(ResponseList.Product product1, ResponseList.Product product2) {
+                return product1.getPrice().compareTo(product2.getPrice());
+            }
+        });
+
+        return list;
     }
 }
