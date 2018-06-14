@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity
         setupListeners();
         setupToolbar();
         setupRecyclerView();
+        presenter.performRequestToRetrieveProductList();
+        toggleLoadingState();
     }
 
     private void bindViews() {
@@ -99,5 +101,29 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+    }
+
+
+    @Override
+    public void toggleLoadingState() {
+        tvError.setVisibility(View.INVISIBLE);
+        rv.setVisibility(View.INVISIBLE);
+        pbLoading.setVisibility(View.VISIBLE);
+    }
+
+
+    @Override
+    public void toggleErrorState() {
+        tvError.setVisibility(View.VISIBLE);
+        rv.setVisibility(View.INVISIBLE);
+        pbLoading.setVisibility(View.INVISIBLE);
+    }
+
+
+    @Override
+    public void toggleNormalState() {
+        tvError.setVisibility(View.INVISIBLE);
+        rv.setVisibility(View.VISIBLE);
+        pbLoading.setVisibility(View.INVISIBLE);
     }
 }
