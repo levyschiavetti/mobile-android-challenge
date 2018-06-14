@@ -14,5 +14,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainPresenter implements MainContract.Presenter {
 
+
     private MainContract.View view;
+    private Retrofit retrofit;
+
+
+    public MainPresenter(MainContract.View view) {
+        this.view = view;
+
+        setupRetrofit();
+    }
+
+    private void setupRetrofit() {
+
+        retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(IRetrofit.BASE_URL)
+                .build();
+    }
 }

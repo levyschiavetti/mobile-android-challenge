@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <!--DetailActivity-->
     <string name="act_detail_on_sale">Promoção</string>
     <string name="act_detail_available_sizes">Disponível nos tamanhos</string>
     <string name="act_detail_iv_content_description">Imagem do produto</string>
+
+
+    <!--MainActivity-->
+    <string name="act_main_title">Os mais vendidos da Amaro</string>
+
 </resources>
