@@ -21,6 +21,11 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         bindViews();
+
+        if (getIntent().getParcelableExtra("Product") != null) {
+            ResponseList.Product product = getIntent().getParcelableExtra("Product");
+            assignValuesToViews(product);
+        }
     }
 
 
