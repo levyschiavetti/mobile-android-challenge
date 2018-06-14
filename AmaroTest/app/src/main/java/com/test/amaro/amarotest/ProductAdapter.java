@@ -47,6 +47,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull final ProductViewHolder holder, final int position) {
 
+        RequestOptions opt = new RequestOptions()
+                .placeholder(R.drawable.vector_placeholder)
+                .error(R.drawable.vector_placeholder);
+
+        Glide.with(context)
+                .load(list.get(position).getImageUrl())
+                .apply(opt)
+                .into(holder.iv);
+
+        holder.tvName.setText(list.get(position).getName());
+        holder.tvPrice.setText(list.get(position).getPriceRegular());
 
     }
 
