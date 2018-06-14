@@ -66,4 +66,17 @@ public class MainPresenter implements MainContract.Presenter,
     public void onFailure(Call<ResponseList> call, Throwable t) {
         view.toggleErrorState();
     }
+
+
+    public List<ResponseList.Product> buildOnSaleList(List<ResponseList.Product> givenList) {
+
+        List<ResponseList.Product> list = new ArrayList<>();
+
+        for (ResponseList.Product product : givenList) {
+            if (product.isOnSale()) {
+                list.add(product);
+            }
+        }
+        return list;
+    }
 }
