@@ -33,4 +33,20 @@ public class DetailActivity extends AppCompatActivity {
         containerSizes = findViewById(R.id.act_detail_container_sizes);
         tvProductSaleStatus = findViewById(R.id.act_detail_tv_sale);
     }
+
+    private void assignValuesToViews(ResponseList.Product product) {
+
+        tvProductName.setText(product.getName());
+        tvProductPromoPrice.setText(product.getPriceActual());
+        tvProductRegularPrice.setText(product.getPriceRegular());
+
+        RequestOptions opt = new RequestOptions()
+                .placeholder(R.drawable.vector_placeholder)
+                .error(R.drawable.vector_placeholder);
+
+        Glide.with(this)
+                .load(product.getImageUrl())
+                .apply(opt)
+                .into(ivProduct);
+    }
 }
