@@ -82,12 +82,12 @@ public class MainPresenter implements MainContract.Presenter,
 
     @Override
     public List<ResponseList.Product> getOnSaleProductList() {
-        return null;
+        return onSaleProductList;
     }
 
     @Override
     public List<ResponseList.Product> getCompleteProductList() {
-        return null;
+        return completeProductList;
     }
 
     @Override

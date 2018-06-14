@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity
 
 
     private MainContract.Presenter presenter = new MainPresenter(this);
+    private ProductAdapter adapter;
     private RecyclerView rv;
     private Toolbar toolbar;
     private TextView tvError;
@@ -72,7 +73,11 @@ public class MainActivity extends AppCompatActivity
         switchFilter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                if (isChecked) {
+                    adapter.setList(presenter.getOnSaleProductList());
+                } else {
+                    adapter.setList(presenter.getCompleteProductList());
+                }
             }
         });
 
@@ -125,6 +130,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void updateList(List<ResponseList.Product> list) {
-
+        adapter.setList(list);
     }
 }
