@@ -1,6 +1,9 @@
 package com.test.amaro.amarotest;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -125,5 +128,20 @@ public class MainActivity extends AppCompatActivity
         tvError.setVisibility(View.INVISIBLE);
         rv.setVisibility(View.VISIBLE);
         pbLoading.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void startDetailActivity(ResponseList.Product product, View ivProduct, View tvName, View tvPrice) {
+
+        Pair<View, String> pairImage = new Pair<>(ivProduct, "product_image");
+        Pair<View, String> pairName = new Pair<>(tvName, "product_name");
+        Pair<View, String> pairPrice = new Pair<>(tvPrice, "product_price");
+
+        ActivityOptionsCompat options =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this, pairImage, pairName, pairPrice);
+
+        Intent i = new Intent(this, DetailActivity.class);
+        i.putExtra("Product", product);
+        startActivity(i, options.toBundle());
     }
 }

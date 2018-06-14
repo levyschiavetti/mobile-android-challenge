@@ -58,7 +58,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.tvName.setText(list.get(position).getName());
         holder.tvPrice.setText(list.get(position).getPriceRegular());
-
+        holder.containerRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.startDetailActivity(list.get(position), holder.iv, holder.tvName, holder.tvPrice);
+            }
+        });
     }
 
 
