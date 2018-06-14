@@ -2,6 +2,9 @@ package com.test.amaro.amarotest;
 
 import java.util.List;
 
+/**
+ *  Contract between MainActivity and MainPresenter
+ */
 public interface MainContract {
 
     interface View {
@@ -14,6 +17,10 @@ public interface MainContract {
     }
 
     interface Presenter {
-
+        void performRequestToRetrieveProductList();
+        List<ResponseList.Product> getOnSaleProductList();
+        List<ResponseList.Product> getCompleteProductList();
+        List<ResponseList.Product> assignPriceValues(List<ResponseList.Product> list);
+        List<ResponseList.Product> sortListByPrice(List<ResponseList.Product> list);
     }
 }
