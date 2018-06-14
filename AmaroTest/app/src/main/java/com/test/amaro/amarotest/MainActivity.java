@@ -84,7 +84,10 @@ public class MainActivity extends AppCompatActivity
         ivSort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                List<ResponseList.Product> list = adapter.getCurrentList();
+                presenter.assignPriceValues(list);
+                presenter.sortListByPrice(list);
+                adapter.setList(list);
             }
         });
     }
