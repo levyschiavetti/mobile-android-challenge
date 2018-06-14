@@ -3,10 +3,18 @@ package com.test.amaro.amarotest;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
+/**
+ *  Interface responsible for performing request to
+ *  Amaro's API regarding products
+ */
 public interface IRetrofit {
 
-    public static final String BASE_URL = "http://www.mocky.io/v2/";
+    String BASE_URL = "http://www.mocky.io/v2/";
 
+    /**
+     * Retrieve all time best-seller product list
+     * @return product list
+     */
     @GET("59b6a65a0f0000e90471257d")
     public Call<ResponseList> getAmaroProductList();
 

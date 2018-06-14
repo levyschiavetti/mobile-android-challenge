@@ -18,8 +18,14 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Activity responsible for displaying product list from
+ *  Amaro's product API.
+ *  Also provides filtering and sorting features.
+ */
 public class MainActivity extends AppCompatActivity
                           implements MainContract.View {
 
@@ -34,8 +40,9 @@ public class MainActivity extends AppCompatActivity
     private ImageView ivSort;
 
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -47,6 +54,32 @@ public class MainActivity extends AppCompatActivity
         toggleLoadingState();
     }
 
+
+    /**
+     *  Configure Activity's Toolbar and its
+     *  title's features
+     */
+    private void setupToolbar() {
+        toolbar.setTitle(R.string.act_main_title);
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
+    }
+
+    /**
+     *  Configure RecyclerView and initialzeits Adapter
+     */
+    private void setupRecyclerView() {
+        adapter = new ProductAdapter(MainActivity.this, new ArrayList<ResponseList.Product>(),
+                this);
+
+        rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        rv.setAdapter(adapter);
+    }
+
+
+    /**
+     *  Bind Views from layout
+     */
     private void bindViews() {
         rv = findViewById(R.id.act_main_rv);
         toolbar = findViewById(R.id.act_main_tb);
@@ -57,22 +90,16 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void setupToolbar() {
-        toolbar.setTitle("Amaros Title");
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
-    }
-
-    private void setupRecyclerView() {
-        rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-    }
-
-
+    /**
+     *  Triggers views that perform some kind of action to start listening
+     *  for events
+     */
     private void setupListeners() {
 
         switchFilter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked) {
                     adapter.setList(presenter.getOnSaleProductList());
                 } else {
@@ -84,6 +111,7 @@ public class MainActivity extends AppCompatActivity
         ivSort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 List<ResponseList.Product> list = adapter.getCurrentList();
                 presenter.assignPriceValues(list);
                 presenter.sortListByPrice(list);
@@ -93,33 +121,23 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * @see MainContract for details
+     *
+     */
     @Override
-    public void toggleLoadingState() {
-        tvError.setVisibility(View.INVISIBLE);
-        rv.setVisibility(View.INVISIBLE);
-        pbLoading.setVisibility(View.VISIBLE);
+    public void updateList(List<ResponseList.Product> list) {
+        adapter.setList(list);
     }
 
-
+    /**
+     * @see MainContract for details
+     *
+     */
     @Override
-    public void toggleErrorState() {
-        tvError.setVisibility(View.VISIBLE);
-        rv.setVisibility(View.INVISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-    }
+    public void startDetailActivity(ResponseList.Product product, View iv, View tvName, View tvPrice) {
 
-
-    @Override
-    public void toggleNormalState() {
-        tvError.setVisibility(View.INVISIBLE);
-        rv.setVisibility(View.VISIBLE);
-        pbLoading.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    public void startDetailActivity(ResponseList.Product product, View ivProduct, View tvName, View tvPrice) {
-
-        Pair<View, String> pairImage = new Pair<>(ivProduct, "product_image");
+        Pair<View, String> pairImage = new Pair<>(iv, "product_image");
         Pair<View, String> pairName = new Pair<>(tvName, "product_name");
         Pair<View, String> pairPrice = new Pair<>(tvPrice, "product_price");
 
@@ -131,8 +149,38 @@ public class MainActivity extends AppCompatActivity
         startActivity(i, options.toBundle());
     }
 
+    /**
+     * @see MainContract for details
+     *
+     */
     @Override
-    public void updateList(List<ResponseList.Product> list) {
-        adapter.setList(list);
+    public void toggleLoadingState() {
+        tvError.setVisibility(View.INVISIBLE);
+        rv.setVisibility(View.INVISIBLE);
+        pbLoading.setVisibility(View.VISIBLE);
+    }
+
+
+    /**
+     * @see MainContract for details
+     *
+     */
+    @Override
+    public void toggleErrorState() {
+        tvError.setVisibility(View.VISIBLE);
+        rv.setVisibility(View.INVISIBLE);
+        pbLoading.setVisibility(View.INVISIBLE);
+    }
+
+
+    /**
+     * @see MainContract for details
+     *
+     */
+    @Override
+    public void toggleNormalState() {
+        tvError.setVisibility(View.INVISIBLE);
+        rv.setVisibility(View.VISIBLE);
+        pbLoading.setVisibility(View.INVISIBLE);
     }
 }
