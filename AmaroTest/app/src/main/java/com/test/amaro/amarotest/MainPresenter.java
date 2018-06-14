@@ -12,11 +12,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MainPresenter implements MainContract.Presenter {
+public class MainPresenter implements MainContract.Presenter,
+                                      Callback<ResponseList> {
 
 
     private MainContract.View view;
     private Retrofit retrofit;
+    private List<ResponseList.Product> completeProductList = new ArrayList<>();
+    private List<ResponseList.Product> onSaleProductList = new ArrayList<>();
 
 
     public MainPresenter(MainContract.View view) {
@@ -31,5 +34,36 @@ public class MainPresenter implements MainContract.Presenter {
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(IRetrofit.BASE_URL)
                 .build();
+    }
+
+    @Override
+    public void performRequestToRetrieveProductList() {
+
+        IRetrofit service = retrofit.create(IRetrofit.class);
+
+        Call<ResponseList> call = service.getAmaroProductList();
+
+        call.enqueue(this);
+    }
+
+    @Override
+    public void onResponse(Call<ResponseList> call, Response<ResponseList> response) {
+
+        if (response.body() != null) {
+
+            ResponseList responseList = response.body();
+
+            if (responseList != null) {
+                completeProductList = responseList.getProducts();
+                onSaleProductList = buildOnSaleList(completeProductList);
+                view.updateList(completeProductList);
+                view.toggleNormalState();
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(Call<ResponseList> call, Throwable t) {
+        view.toggleErrorState();
     }
 }
