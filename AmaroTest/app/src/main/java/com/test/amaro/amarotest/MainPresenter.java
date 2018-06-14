@@ -79,4 +79,24 @@ public class MainPresenter implements MainContract.Presenter,
         }
         return list;
     }
+
+    @Override
+    public List<ResponseList.Product> getOnSaleProductList() {
+        return null;
+    }
+
+    @Override
+    public List<ResponseList.Product> getCompleteProductList() {
+        return null;
+    }
+
+    @Override
+    public List<ResponseList.Product> assignPriceValues(List<ResponseList.Product> list) {
+        return null;
+    }
+
+    @Override
+    public List<ResponseList.Product> sortListByPrice(List<ResponseList.Product> list) {
+        return null;
+    }
 }

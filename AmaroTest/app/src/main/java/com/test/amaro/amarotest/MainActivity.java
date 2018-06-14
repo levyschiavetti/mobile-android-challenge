@@ -144,4 +144,9 @@ public class MainActivity extends AppCompatActivity
         i.putExtra("Product", product);
         startActivity(i, options.toBundle());
     }
+
+    @Override
+    public void updateList(List<ResponseList.Product> list) {
+
+    }
 }
