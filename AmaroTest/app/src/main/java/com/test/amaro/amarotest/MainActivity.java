@@ -8,6 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Switch;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
                           implements MainContract.View {
@@ -16,6 +20,10 @@ public class MainActivity extends AppCompatActivity
     private MainContract.Presenter presenter = new MainPresenter(this);
     private RecyclerView rv;
     private Toolbar toolbar;
+    private TextView tvError;
+    private ProgressBar pbLoading;
+    private Switch switchFilter;
+    private ImageView ivSort;
 
 
     @Override
@@ -31,6 +39,10 @@ public class MainActivity extends AppCompatActivity
     private void bindViews() {
         rv = findViewById(R.id.act_main_rv);
         toolbar = findViewById(R.id.act_main_tb);
+        pbLoading = findViewById(R.id.act_main_pb);
+        tvError = findViewById(R.id.act_main_tv_error);
+        switchFilter = findViewById(R.id.act_main_switch_filter);
+        ivSort = findViewById(R.id.act_main_iv_sort);
     }
 
 
