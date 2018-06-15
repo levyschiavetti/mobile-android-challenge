@@ -68,9 +68,10 @@ public class MainActivity extends AppCompatActivity
      *  title's features
      */
     private void setupToolbar() {
-//        toolbar.setTitle(R.string.act_main_title);
-//        toolbar.setTitleTextColor(Color.WHITE);
-//        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.act_main_title);
+        }
     }
 
     /**
