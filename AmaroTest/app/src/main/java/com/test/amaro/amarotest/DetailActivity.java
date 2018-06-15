@@ -1,8 +1,10 @@
 package com.test.amaro.amarotest;
 
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,6 +25,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvProductSaleStatus;
     private ImageView ivProduct;
     private LinearLayout containerSizes;
+    private Toolbar toolbar;
 
 
     @Override
@@ -37,8 +40,25 @@ public class DetailActivity extends AppCompatActivity {
             assignValuesToViews(product);
             generateAvailableSizes(product);
             setupOnSaleLayout(product);
+            setupToolbar(product.getName());
         }
     }
+
+    /**
+     *  Configure Activity's Toolbar and its
+     *  title's features according to the product name
+     */
+    private void setupToolbar(String productName) {
+        toolbar.setTitle(productName);
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+    }
+
 
     /**
      *  Bind views from Activity's layout
@@ -51,6 +71,7 @@ public class DetailActivity extends AppCompatActivity {
         ivProduct = findViewById(R.id.act_detail_iv);
         containerSizes = findViewById(R.id.act_detail_container_sizes);
         tvProductSaleStatus = findViewById(R.id.act_detail_tv_sale);
+        toolbar = findViewById(R.id.act_detail_tb);
     }
 
 

@@ -6,12 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/act_detail_tb"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@android:color/black"/>
+
     <ImageView
         android:id="@+id/act_detail_iv"
         android:transitionName="product_image"
         android:background="@android:color/white"
         android:contentDescription="@string/act_detail_iv_content_description"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/act_detail_tb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@mipmap/ic_launcher"

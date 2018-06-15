@@ -12,7 +12,7 @@ public class Util {
 
         if (manager != null) {
             NetworkInfo ni = manager.getActiveNetworkInfo();
-            return ni.isConnectedOrConnecting();
+            return ni != null && ni.isConnectedOrConnecting();
         } else {
             return false;
         }

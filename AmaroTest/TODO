@@ -2,14 +2,14 @@
 
 Must have:
 
-- Clickable Item
 - Back button in DetailActivity
 - Strings extracted
 - Tests
 
 Nice to have:
 
-- Strikethrough on regular price
+- Add Try again button
+- Clickable Item
 - Apply animation to RecyclerView items when list changes
 - Collapsing Toolbar
 - Animate Fab entrance
