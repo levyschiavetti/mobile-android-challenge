@@ -11,15 +11,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
+/**
+ *  Presenter of MainActivity, responsible for working
+ *  on the logic of MainActivity's purpose
+ */
 public class MainPresenter implements MainContract.Presenter,
-                                      Callback<ResponseList> {
-
+        Callback<ResponseList> {
 
     private MainContract.View view;
     private Retrofit retrofit;
     private List<ResponseList.Product> completeProductList = new ArrayList<>();
     private List<ResponseList.Product> onSaleProductList = new ArrayList<>();
+
 
 
     public MainPresenter(MainContract.View view) {
@@ -28,6 +31,10 @@ public class MainPresenter implements MainContract.Presenter,
         setupRetrofit();
     }
 
+    /**
+     *  Initialize Retrofit for performing call to
+     *  the product API
+     */
     private void setupRetrofit() {
 
         retrofit = new Retrofit.Builder()
@@ -36,6 +43,9 @@ public class MainPresenter implements MainContract.Presenter,
                 .build();
     }
 
+    /**
+     * @see MainContract
+     */
     @Override
     public void performRequestToRetrieveProductList() {
 
@@ -46,6 +56,10 @@ public class MainPresenter implements MainContract.Presenter,
         call.enqueue(this);
     }
 
+
+    /**
+     * @see MainContract
+     */
     @Override
     public void onResponse(Call<ResponseList> call, Response<ResponseList> response) {
 
@@ -62,12 +76,36 @@ public class MainPresenter implements MainContract.Presenter,
         }
     }
 
+
+    /**
+     * @see MainContract
+     */
     @Override
     public void onFailure(Call<ResponseList> call, Throwable t) {
         view.toggleErrorState();
     }
 
+    /**
+     * @see MainContract
+     */
+    @Override
+    public List<ResponseList.Product> getOnSaleProductList() {
+        return onSaleProductList;
+    }
 
+    /**
+     * @see MainContract
+     */
+    @Override
+    public List<ResponseList.Product> getCompleteProductList() {
+        return completeProductList;
+    }
+
+    /**
+     *  Filter a list according to OnSale product status
+     * @param givenList The list to be filtered
+     * @return The filtered list
+     */
     public List<ResponseList.Product> buildOnSaleList(List<ResponseList.Product> givenList) {
 
         List<ResponseList.Product> list = new ArrayList<>();
@@ -80,16 +118,9 @@ public class MainPresenter implements MainContract.Presenter,
         return list;
     }
 
-    @Override
-    public List<ResponseList.Product> getOnSaleProductList() {
-        return onSaleProductList;
-    }
-
-    @Override
-    public List<ResponseList.Product> getCompleteProductList() {
-        return completeProductList;
-    }
-
+    /**
+     * @see MainContract
+     */
     @Override
     public List<ResponseList.Product> assignPriceValues(List<ResponseList.Product> list) {
 
@@ -106,9 +137,12 @@ public class MainPresenter implements MainContract.Presenter,
         }
 
         return list;
-
     }
 
+
+    /**
+     * @see MainContract
+     */
     @Override
     public List<ResponseList.Product> sortListByPrice(List<ResponseList.Product> list) {
 

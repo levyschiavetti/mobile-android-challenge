@@ -2,9 +2,7 @@ package com.test.amaro.amarotest;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,7 +134,7 @@ public class ResponseList {
         }
 
         @SuppressWarnings("unused")
-        public static final Creator<Product> CREATOR = new Creator<Product>() {
+        public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
             @Override
             public Product createFromParcel(Parcel in) {
                 return new Product(in);
@@ -207,7 +205,7 @@ public class ResponseList {
         }
 
         @SuppressWarnings("unused")
-        public static final Creator<Size> CREATOR = new Creator<Size>() {
+        public static final Parcelable.Creator<Size> CREATOR = new Parcelable.Creator<Size>() {
             @Override
             public Size createFromParcel(Parcel in) {
                 return new Size(in);
