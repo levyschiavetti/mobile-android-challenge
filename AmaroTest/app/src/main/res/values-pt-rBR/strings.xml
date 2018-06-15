@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--Samples-->
+    <string name="sample_only">Apenas</string>
+    <string name="sample_product_price">R$ 299,00</string>
+
 
     <!--DetailActivity-->
     <string name="act_detail_on_sale">Promoção</string>
@@ -10,5 +14,6 @@
 
     <!--MainActivity-->
     <string name="act_main_title">Os mais vendidos da Amaro</string>
+    <string name="act_main_feedback_offline">Algo deu errado.\n Verifique sua conexão e tente novamente</string>
 
 </resources>

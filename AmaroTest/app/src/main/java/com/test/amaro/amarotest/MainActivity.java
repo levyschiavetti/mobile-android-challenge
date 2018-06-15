@@ -2,24 +2,27 @@ package com.test.amaro.amarotest;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
+import android.media.Image;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.util.Pair;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  *  Activity responsible for displaying product list from
@@ -27,7 +30,7 @@ import java.util.List;
  *  Also provides filtering and sorting features.
  */
 public class MainActivity extends AppCompatActivity
-                          implements MainContract.View {
+        implements MainContract.View {
 
 
     private MainContract.Presenter presenter = new MainPresenter(this);
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity
     private TextView tvError;
     private ProgressBar pbLoading;
     private Switch switchFilter;
-    private ImageView ivSort;
+    private FloatingActionButton fab;
 
 
 
@@ -50,8 +53,13 @@ public class MainActivity extends AppCompatActivity
         setupListeners();
         setupToolbar();
         setupRecyclerView();
-        presenter.performRequestToRetrieveProductList();
-        toggleLoadingState();
+
+        if (Util.isOnline(this)) {
+            presenter.performRequestToRetrieveProductList();
+            toggleLoadingState();
+        } else {
+            toggleErrorState();
+        }
     }
 
 
@@ -86,7 +94,7 @@ public class MainActivity extends AppCompatActivity
         pbLoading = findViewById(R.id.act_main_pb);
         tvError = findViewById(R.id.act_main_tv_error);
         switchFilter = findViewById(R.id.act_main_switch_filter);
-        ivSort = findViewById(R.id.act_main_iv_sort);
+        fab = findViewById(R.id.act_main_fab);
     }
 
 
@@ -108,7 +116,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        ivSort.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

@@ -3,40 +3,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/act_main_tb"
-        android:background="@android:color/black"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize">
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@android:color/black">
 
         <Switch
             android:id="@+id/act_main_switch_filter"
-            android:text="Filter"
-            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/act_main_iv_sort"
-            android:src="@drawable/icon_sort"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="On Sale"
+            android:textColor="@android:color/white" />
 
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/act_main_rv"
-        android:layout_below="@id/act_main_tb"
-        android:layoutAnimation="@anim/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/act_main_tb"
         android:layout_centerInParent="true"
+        android:layoutAnimation="@anim/rv"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -44,24 +38,35 @@
 
     <TextView
         android:id="@+id/act_main_tv_error"
-        android:layout_below="@id/act_main_tb"
-        android:background="@android:color/white"
-        android:textColor="@android:color/white"
-        android:drawableTop="@drawable/icon_filter"
-        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Something went wrong"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:drawablePadding="15dp"
+        android:drawableTop="@drawable/vector_offline"
+        android:gravity="center"
+        android:text="@string/act_main_feedback_offline"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp" />
 
     <ProgressBar
         android:id="@+id/act_main_pb"
-        android:indeterminate="true"
-        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="visible" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/act_main_fab"
+        android:src="@drawable/icon_sort"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 
 </RelativeLayout>

@@ -7,14 +7,17 @@
     <!--Samples-->
     <string name="sample_product_name">Blue Ripped Jeans</string>
     <string name="sample_product_price">R$ 299,00</string>
+    <string name="sample_only">Only</string>
 
 
     <!--MainActivity-->
     <string name="act_main_title">Amaro\'s all-time best-sellers</string>
+    <string name="act_main_feedback_offline">Something went wrong.\nCheck your network and try again</string>
 
 
     <!--DetailActivity-->
     <string name="act_detail_on_sale">On Sale</string>
     <string name="act_detail_available_sizes">Available on sizes</string>
     <string name="act_detail_iv_content_description">Product Image</string>
+
 </resources>
