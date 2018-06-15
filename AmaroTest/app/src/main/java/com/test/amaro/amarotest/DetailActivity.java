@@ -1,16 +1,14 @@
 package com.test.amaro.amarotest;
 
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import butterknife.BindView;
 
 
 /**
@@ -38,7 +36,7 @@ public class DetailActivity extends AppCompatActivity {
             ResponseList.Product product = getIntent().getParcelableExtra("Product");
             assignValuesToViews(product);
             generateAvailableSizes(product);
-            defineOnSaleVisibility(product);
+            setupOnSaleLayout(product);
         }
     }
 
@@ -94,9 +92,9 @@ public class DetailActivity extends AppCompatActivity {
                 textView.setText(size.getSize());
 
                 LinearLayout.LayoutParams lp = new
-                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-
+                lp.setMargins(0, 10, 15, 0);
                 textView.setLayoutParams(lp);
                 containerSizes.addView(textView);
             }
@@ -105,16 +103,18 @@ public class DetailActivity extends AppCompatActivity {
 
 
     /**
+     *  Changes layout to fit On Sale product.
      *  Toggle on visibility of promotional views according to product's
-     *  onSale status
+     *  onSale status and change regular price appearance
      *
      * @param product the product to be displayed
      */
-    private void defineOnSaleVisibility(ResponseList.Product product) {
+    private void setupOnSaleLayout(ResponseList.Product product) {
 
         if (product.isOnSale()) {
             tvProductSaleStatus.setVisibility(View.VISIBLE);
             tvProductPromoPrice.setVisibility(View.VISIBLE);
+            tvProductRegularPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         }
     }
 }
