@@ -26,7 +26,7 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView ivProduct;
     private LinearLayout containerSizes;
     private Toolbar toolbar;
-
+    private ImageView ivBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +53,13 @@ public class DetailActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
 
@@ -72,6 +75,7 @@ public class DetailActivity extends AppCompatActivity {
         containerSizes = findViewById(R.id.act_detail_container_sizes);
         tvProductSaleStatus = findViewById(R.id.act_detail_tv_sale);
         toolbar = findViewById(R.id.act_detail_tb);
+        ivBack = findViewById(R.id.act_detail_back);
     }
 
 

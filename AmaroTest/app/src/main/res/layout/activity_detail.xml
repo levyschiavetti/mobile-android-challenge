@@ -8,9 +8,18 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/act_detail_tb"
+        app:navigationIcon="?homeAsUpIndicator"
         android:layout_width="match_parent"
+        android:gravity="left|start"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@android:color/black"/>
+        android:background="@android:color/black">
+
+        <ImageView
+            android:id="@+id/act_detail_back"
+            android:src="@drawable/icon_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:id="@+id/act_detail_iv"
