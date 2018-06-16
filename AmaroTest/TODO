@@ -2,10 +2,8 @@
 
 Must have:
 
-- Check prices
 - Test on Ariane's device
 - Continue writing tests
-
 
 
 Nice to have:
@@ -15,5 +13,3 @@ Nice to have:
 - Add Try again button (1h)
 - Change image placeholder (1h)
 - Change sort icon
-- Splash Activity (1h)
-- Clickable Item (2h)

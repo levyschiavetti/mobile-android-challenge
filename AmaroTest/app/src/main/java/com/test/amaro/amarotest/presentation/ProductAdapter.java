@@ -56,8 +56,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
      * @param list
      */
     public void setList(List<ProductListResponse.Product> list) {
+
+        notifyItemRangeRemoved(0, this.list.size());
+
         this.list = list;
-        notifyDataSetChanged();
+
+        notifyItemRangeInserted(0, this.list.size());
     }
 
     /**
