@@ -167,6 +167,8 @@ public class MainActivity extends AppCompatActivity
         tvError.setVisibility(View.INVISIBLE);
         rv.setVisibility(View.INVISIBLE);
         pbLoading.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        toolbar.setVisibility(View.INVISIBLE);
     }
 
 
@@ -179,6 +181,8 @@ public class MainActivity extends AppCompatActivity
         tvError.setVisibility(View.VISIBLE);
         rv.setVisibility(View.INVISIBLE);
         pbLoading.setVisibility(View.INVISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        toolbar.setVisibility(View.INVISIBLE);
     }
 
 
@@ -191,5 +195,7 @@ public class MainActivity extends AppCompatActivity
         tvError.setVisibility(View.INVISIBLE);
         rv.setVisibility(View.VISIBLE);
         pbLoading.setVisibility(View.INVISIBLE);
+        fab.setVisibility(View.VISIBLE);
+        toolbar.setVisibility(View.VISIBLE);
     }
 }

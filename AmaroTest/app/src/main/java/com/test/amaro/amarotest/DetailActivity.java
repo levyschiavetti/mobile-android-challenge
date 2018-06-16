@@ -20,7 +20,6 @@ import com.bumptech.glide.request.RequestOptions;
  */
 public class DetailActivity extends AppCompatActivity {
 
-
     private TextView tvToolbarTitle;
     private TextView tvProductName;
     private TextView tvProductPromoPrice;
