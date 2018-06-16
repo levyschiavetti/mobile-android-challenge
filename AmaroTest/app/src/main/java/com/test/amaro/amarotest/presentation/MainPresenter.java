@@ -146,10 +146,17 @@ public class MainPresenter implements MainContract.Presenter,
 
         for (ProductListResponse.Product product : list) {
 
-            String priceString = product.getPriceRegular()
-                    .replace("R$", "")
-                    .replace(",",".")
-                    .trim();
+            String priceString;
+
+            if (product.isOnSale()) {
+                priceString = product.getPricePromotional();
+            } else {
+                priceString = product.getPriceRegular();
+            }
+
+            priceString = priceString.replace("R$", "")
+                       .replace(",",".")
+                       .trim();
 
             Double price = Double.parseDouble(priceString);
 

@@ -93,7 +93,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 .into(holder.iv);
 
         holder.tvName.setText(list.get(holder.getAdapterPosition()).getName());
-        holder.tvPrice.setText(list.get(holder.getAdapterPosition()).getPriceRegular());
+
         holder.containerRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +103,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         if (list.get(holder.getAdapterPosition()).isOnSale()) {
             holder.ivSale.setVisibility(View.VISIBLE);
+            holder.tvPrice.setText(list.get(holder.getAdapterPosition()).getPricePromotional());
         } else {
+            holder.tvPrice.setText(list.get(holder.getAdapterPosition()).getPriceRegular());
             holder.ivSale.setVisibility(View.INVISIBLE);
         }
     }
