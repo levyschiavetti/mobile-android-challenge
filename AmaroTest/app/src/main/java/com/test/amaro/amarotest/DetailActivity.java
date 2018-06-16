@@ -37,8 +37,8 @@ public class DetailActivity extends AppCompatActivity {
 
         bindViews();
 
-        if (getIntent().getParcelableExtra("Product") != null) {
-            ResponseList.Product product = getIntent().getParcelableExtra("Product");
+        if (getIntent().getParcelableExtra(Constants.EXTRA_PRODUCT) != null) {
+            ResponseList.Product product = getIntent().getParcelableExtra(Constants.EXTRA_PRODUCT);
             assignValuesToViews(product);
             generateAvailableSizes(product);
             setupOnSaleLayout(product);

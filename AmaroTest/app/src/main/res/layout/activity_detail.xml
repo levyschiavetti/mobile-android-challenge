@@ -13,7 +13,7 @@
         android:background="@android:color/white"
         android:contentDescription="@string/act_detail_iv_content_description"
         android:src="@mipmap/ic_launcher"
-        android:transitionName="product_image"
+        android:transitionName="@string/transition_name_product_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -28,7 +28,7 @@
         android:textColor="@android:color/holo_green_light"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:transitionName="product_name"
+        android:transitionName="@string/transition_name_product_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/act_detail_tv_sale" />
@@ -40,7 +40,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/sample_product_price"
         android:textSize="14sp"
-        android:transitionName="product_price"
+        android:transitionName="@string/transition_name_product_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/act_detail_tv_name" />

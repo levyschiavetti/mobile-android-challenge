@@ -22,7 +22,7 @@
             android:switchPadding="10dp"
             android:shadowColor="@android:color/white"
             android:includeFontPadding="true"
-            android:text="Show only products On Sale"
+            android:text="@string/act_main_switch_text"
             android:textColor="@android:color/white" />
 
     </android.support.v7.widget.Toolbar>

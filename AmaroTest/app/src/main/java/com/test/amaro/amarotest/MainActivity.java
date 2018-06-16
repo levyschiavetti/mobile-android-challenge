@@ -146,15 +146,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void startDetailActivity(ResponseList.Product product, View iv, View tvName, View tvPrice) {
 
-        Pair<View, String> pairImage = new Pair<>(iv, "product_image");
-        Pair<View, String> pairName = new Pair<>(tvName, "product_name");
-        Pair<View, String> pairPrice = new Pair<>(tvPrice, "product_price");
+        Pair<View, String> pairImage = new Pair<>(iv, getString(R.string.transition_name_product_image));
+        Pair<View, String> pairName = new Pair<>(tvName, getString(R.string.transition_name_product_name));
+        Pair<View, String> pairPrice = new Pair<>(tvPrice, getString(R.string.transition_name_product_price));
 
         ActivityOptionsCompat options =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(this, pairImage, pairName, pairPrice);
 
         Intent i = new Intent(this, DetailActivity.class);
-        i.putExtra("Product", product);
+        i.putExtra(Constants.EXTRA_PRODUCT, product);
         startActivity(i, options.toBundle());
     }
 

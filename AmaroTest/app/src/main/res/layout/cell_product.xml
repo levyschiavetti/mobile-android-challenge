@@ -30,7 +30,7 @@
             android:contentDescription="@string/act_detail_iv_content_description"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:transitionName="product_image"
+            android:transitionName="@string/transition_name_product_image"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
             android:id="@+id/cell_product_tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:transitionName="product_name"
+            android:transitionName="@string/transition_name_product_name"
             android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="@string/sample_product_name"
@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/cell_product_tv_price"
-            android:transitionName="product_price"
+            android:transitionName="@string/transition_name_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sample_product_price"

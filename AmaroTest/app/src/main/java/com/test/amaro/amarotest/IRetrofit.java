@@ -9,7 +9,7 @@ import retrofit2.http.GET;
  */
 public interface IRetrofit {
 
-    String BASE_URL = "http://www.mocky.io/v2/";
+    String BASE_URL = Constants.SERVER_URL;
 
     /**
      * Retrieve all time best-seller product list

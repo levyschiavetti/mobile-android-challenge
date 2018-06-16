@@ -9,15 +9,19 @@
     <string name="sample_product_price">R$ 299,00</string>
     <string name="sample_only">Only</string>
 
-
     <!--MainActivity-->
     <string name="act_main_title">Amaro\'s all-time best-sellers</string>
     <string name="act_main_feedback_offline">Something went wrong.\nCheck your network and try again</string>
-
+    <string name="act_main_switch_text">Display on sale products only</string>
 
     <!--DetailActivity-->
     <string name="act_detail_on_sale">On Sale</string>
     <string name="act_detail_available_sizes">Available on sizes</string>
     <string name="act_detail_iv_content_description">Product Image</string>
+
+    <!--Transition Names-->
+    <string name="transition_name_product_name">product_name</string>
+    <string name="transition_name_product_image">product_image</string>
+    <string name="transition_name_product_price">product_price</string>
 
 </resources>

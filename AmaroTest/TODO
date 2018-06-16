@@ -2,16 +2,19 @@
 
 Must have:
 
-- Tests
-- Strings extracted
-- Review MVP
+- Organize packages in Clean (1h)
+- Strings extracted (30 min)
+- Review whole project and MVP (2h)
+- Test on Ariane's device
+- Continue tests
+- Change Switch test
 
 Nice to have:
 
-- Launcher Icon
-- Add Try again button
-- Clickable Item
-- Apply animation to RecyclerView items when list changes
-- Collapsing Toolbar
-- Animate Fab entrance
-- Splash Activity
+- Launcher Icon (1h)
+- Add Try again button (1h)
+- Change image placeholder (1h)
+- Change sort icon
+- Apply animation to RecyclerView items when list changes (1.5h)
+- Splash Activity (1h)
+- Clickable Item (2h)
