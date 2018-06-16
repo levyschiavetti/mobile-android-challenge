@@ -118,8 +118,8 @@ public class DetailActivity extends AppCompatActivity {
         tvProductRegularPrice.setText(product.getPriceRegular());
 
         RequestOptions opt = new RequestOptions()
-                .placeholder(R.drawable.vector_placeholder)
-                .error(R.drawable.vector_placeholder);
+                .placeholder(R.mipmap.icon_launcher)
+                .error(R.mipmap.icon_launcher);
 
         Glide.with(this)
                 .load(product.getImageUrl())

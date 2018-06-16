@@ -12,7 +12,7 @@
         android:layout_height="320dp"
         android:background="@android:color/white"
         android:contentDescription="@string/act_detail_iv_content_description"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/icon_launcher"
         android:transitionName="@string/transition_name_product_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

@@ -88,8 +88,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull final ProductViewHolder holder, int position) {
 
         RequestOptions opt = new RequestOptions()
-                .placeholder(R.drawable.vector_placeholder)
-                .error(R.drawable.vector_placeholder);
+                .placeholder(R.mipmap.icon_launcher)
+                .error(R.mipmap.icon_launcher);
 
         Glide.with(context)
                 .load(list.get(holder.getAdapterPosition()).getImageUrl())
