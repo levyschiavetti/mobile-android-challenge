@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.test.amaro.amarotest.common.Constants;
 import com.test.amaro.amarotest.R;
-import com.test.amaro.amarotest.domain.ResponseList;
+import com.test.amaro.amarotest.domain.ProductListResponse;
 import com.test.amaro.amarotest.common.Util;
 
 import java.util.ArrayList;
@@ -31,16 +31,51 @@ import java.util.List;
  *  Also provides filtering and sorting features.
  */
 public class MainActivity extends AppCompatActivity
-        implements MainContract.View {
+                          implements MainContract.View {
 
 
+    /**
+     *  Presenter member of the MainContract
+     */
     private MainContract.Presenter presenter = new MainPresenter(this);
+
+    /**
+     *  Product Adapter responsible for carrying list of product
+     */
     private ProductAdapter adapter;
+
+    /**
+     *  RecyclerView that displays list of products
+     */
     private RecyclerView rv;
+
+    /**
+     *  Activity's Toolbar
+     */
     private Toolbar toolbar;
+
+    /**
+     *  TextView responsible for providing information
+     *  regarding eventual errors.
+     */
     private TextView tvError;
+
+    /**
+     *  Progresbar used to display loading status of Network
+     *  call
+     */
     private ProgressBar pbLoading;
+
+    /**
+     *  SwitchView which toogles on and off list state of on sale status
+     *  exclusively
+     *
+     */
     private Switch switchFilter;
+
+    /**
+     *  Fab responsible for sorting products in ascending order (by Price)
+     */
     private FloatingActionButton fab;
 
 
@@ -76,10 +111,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     *  Configure RecyclerView and initialzeits Adapter
+     *  Configure RecyclerView and initialze its Adapter
      */
     private void setupRecyclerView() {
-        adapter = new ProductAdapter(MainActivity.this, new ArrayList<ResponseList.Product>(),
+        adapter = new ProductAdapter(MainActivity.this, new ArrayList<ProductListResponse.Product>(),
                 this);
 
         rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -122,7 +157,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                List<ResponseList.Product> list = adapter.getCurrentList();
+                List<ProductListResponse.Product> list = adapter.getCurrentList();
                 presenter.assignPriceValues(list);
                 presenter.sortListByPrice(list);
                 adapter.setList(list);
@@ -136,7 +171,7 @@ public class MainActivity extends AppCompatActivity
      *
      */
     @Override
-    public void updateList(List<ResponseList.Product> list) {
+    public void updateList(List<ProductListResponse.Product> list) {
         adapter.setList(list);
     }
 
@@ -145,7 +180,7 @@ public class MainActivity extends AppCompatActivity
      *
      */
     @Override
-    public void startDetailActivity(ResponseList.Product product, View iv, View tvName, View tvPrice) {
+    public void startDetailActivity(ProductListResponse.Product product, View iv, View tvName, View tvPrice) {
 
         Pair<View, String> pairImage = new Pair<>(iv, getString(R.string.transition_name_product_image));
         Pair<View, String> pairName = new Pair<>(tvName, getString(R.string.transition_name_product_name));

@@ -1,7 +1,8 @@
 package com.test.amaro.amarotest.presentation;
 
-import com.test.amaro.amarotest.domain.IRetrofit;
-import com.test.amaro.amarotest.domain.ResponseList;
+import com.test.amaro.amarotest.common.Constants;
+import com.test.amaro.amarotest.domain.ProductService;
+import com.test.amaro.amarotest.domain.ProductListResponse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,12 +19,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *  on the logic of MainActivity's purpose
  */
 public class MainPresenter implements MainContract.Presenter,
-        Callback<ResponseList> {
+        Callback<ProductListResponse> {
 
+    /**
+     *  View member of MainContract
+     */
     private MainContract.View view;
+
+    /**
+     *  Retrofit object responsible for performing network calls
+     */
     private Retrofit retrofit;
-    private List<ResponseList.Product> completeProductList = new ArrayList<>();
-    private List<ResponseList.Product> onSaleProductList = new ArrayList<>();
+
+    /**
+     *  The complete list of products received from API
+     */
+    private List<ProductListResponse.Product> completeProductList = new ArrayList<>();
+
+    /**
+     *  The filtered list of products by 'on sale' status (true)
+     */
+    private List<ProductListResponse.Product> onSaleProductList = new ArrayList<>();
 
 
 
@@ -41,7 +57,7 @@ public class MainPresenter implements MainContract.Presenter,
 
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(IRetrofit.BASE_URL)
+                .baseUrl(Constants.SERVER_URL)
                 .build();
     }
 
@@ -51,9 +67,9 @@ public class MainPresenter implements MainContract.Presenter,
     @Override
     public void performRequestToRetrieveProductList() {
 
-        IRetrofit service = retrofit.create(IRetrofit.class);
+        ProductService service = retrofit.create(ProductService.class);
 
-        Call<ResponseList> call = service.getAmaroProductList();
+        Call<ProductListResponse> call = service.getAmaroProductList();
 
         call.enqueue(this);
     }
@@ -63,14 +79,14 @@ public class MainPresenter implements MainContract.Presenter,
      * @see MainContract
      */
     @Override
-    public void onResponse(Call<ResponseList> call, Response<ResponseList> response) {
+    public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
 
         if (response.body() != null) {
 
-            ResponseList responseList = response.body();
+            ProductListResponse productListResponse = response.body();
 
-            if (responseList != null) {
-                completeProductList = responseList.getProducts();
+            if (productListResponse != null) {
+                completeProductList = productListResponse.getProducts();
                 onSaleProductList = buildOnSaleList(completeProductList);
                 view.updateList(completeProductList);
                 view.toggleNormalState();
@@ -83,7 +99,7 @@ public class MainPresenter implements MainContract.Presenter,
      * @see MainContract
      */
     @Override
-    public void onFailure(Call<ResponseList> call, Throwable t) {
+    public void onFailure(Call<ProductListResponse> call, Throwable t) {
         view.toggleErrorState();
     }
 
@@ -91,7 +107,7 @@ public class MainPresenter implements MainContract.Presenter,
      * @see MainContract
      */
     @Override
-    public List<ResponseList.Product> getOnSaleProductList() {
+    public List<ProductListResponse.Product> getOnSaleProductList() {
         return onSaleProductList;
     }
 
@@ -99,7 +115,7 @@ public class MainPresenter implements MainContract.Presenter,
      * @see MainContract
      */
     @Override
-    public List<ResponseList.Product> getCompleteProductList() {
+    public List<ProductListResponse.Product> getCompleteProductList() {
         return completeProductList;
     }
 
@@ -108,11 +124,11 @@ public class MainPresenter implements MainContract.Presenter,
      * @param givenList The list to be filtered
      * @return The filtered list
      */
-    public List<ResponseList.Product> buildOnSaleList(List<ResponseList.Product> givenList) {
+    public List<ProductListResponse.Product> buildOnSaleList(List<ProductListResponse.Product> givenList) {
 
-        List<ResponseList.Product> list = new ArrayList<>();
+        List<ProductListResponse.Product> list = new ArrayList<>();
 
-        for (ResponseList.Product product : givenList) {
+        for (ProductListResponse.Product product : givenList) {
             if (product.isOnSale()) {
                 list.add(product);
             }
@@ -124,9 +140,9 @@ public class MainPresenter implements MainContract.Presenter,
      * @see MainContract
      */
     @Override
-    public List<ResponseList.Product> assignPriceValues(List<ResponseList.Product> list) {
+    public List<ProductListResponse.Product> assignPriceValues(List<ProductListResponse.Product> list) {
 
-        for (ResponseList.Product product : list) {
+        for (ProductListResponse.Product product : list) {
 
             String priceString = product.getPriceRegular()
                     .replace("R$", "")
@@ -146,11 +162,11 @@ public class MainPresenter implements MainContract.Presenter,
      * @see MainContract
      */
     @Override
-    public List<ResponseList.Product> sortListByPrice(List<ResponseList.Product> list) {
+    public List<ProductListResponse.Product> sortListByPrice(List<ProductListResponse.Product> list) {
 
-        Collections.sort(list, new Comparator<ResponseList.Product>() {
+        Collections.sort(list, new Comparator<ProductListResponse.Product>() {
             @Override
-            public int compare(ResponseList.Product product1, ResponseList.Product product2) {
+            public int compare(ProductListResponse.Product product1, ProductListResponse.Product product2) {
                 return product1.getPrice().compareTo(product2.getPrice());
             }
         });

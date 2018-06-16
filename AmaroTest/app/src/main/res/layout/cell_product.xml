@@ -66,6 +66,7 @@
             android:id="@+id/cell_product_iv_sale"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/content_description_on_sale"
             android:visibility="invisible"
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"

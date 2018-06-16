@@ -1,6 +1,5 @@
 package com.test.amaro.amarotest.presentation;
 
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,23 +10,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-
-
 import com.test.amaro.amarotest.R;
-import com.test.amaro.amarotest.domain.ResponseList;
-
+import com.test.amaro.amarotest.domain.ProductListResponse;
 import java.util.List;
 
 
+/**
+ *  Adapter responsible for carrying product data
+ */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
+    /**
+     *  The context in which Adapter is being displayed
+     */
     private Context context;
-    private List<ResponseList.Product> list;
+
+    /**
+     *  The list of products to be displayed
+     */
+    private List<ProductListResponse.Product> list;
+
+    /**
+     *  The View member of MainContract
+     */
     private MainContract.View view;
 
 
     ProductAdapter(Context context,
-                   List<ResponseList.Product> list,
+                   List<ProductListResponse.Product> list,
                    MainContract.View view) {
 
         this.context = context;
@@ -35,12 +45,27 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         this.view = view;
     }
 
-    public void setList(List<ResponseList.Product> list) {
+    /**
+     *  Method responsible for setting current list of products being
+     *  displayed.
+     *  Adapter may present over three types of list: Complete List,
+     *  On Sale List, Complete List sorted by price and On Sale List
+     *  sorted by price.
+     *  By calling this method with any list, RecyclerView is notified
+     *  to display the current requested list.
+     * @param list
+     */
+    public void setList(List<ProductListResponse.Product> list) {
         this.list = list;
         notifyDataSetChanged();
     }
 
-    public List<ResponseList.Product> getCurrentList() {
+    /**
+     * Responsible for returning the current list being displayed
+     * at the moment.
+     * @return The current list being displayed.
+     */
+    public List<ProductListResponse.Product> getCurrentList() {
         return this.list;
     }
 
@@ -90,6 +115,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
 
+    /**
+     *  ViewHolder for a Product.
+     *  It displays data such as name, price, image and on sale status.
+     */
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView iv;

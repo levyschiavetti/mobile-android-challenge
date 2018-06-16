@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ResponseList {
+/**
+ *  Model used to parse response from server.
+ *  It represents a list of Product object (@see Product object)
+ */
+public class ProductListResponse {
 
     @SerializedName("products")
     private List<Product> products;
@@ -21,26 +25,55 @@ public class ResponseList {
     }
 
 
+    /**
+     *  An object that represents a single Amaro product.
+     *
+     */
     public static class Product implements Parcelable {
 
+        /**
+         * The product name
+         */
         @SerializedName("name")
         private String name;
 
+        /**
+         * The image which represent the product
+         */
         @SerializedName("image")
         private String imageUrl;
 
+        /**
+         *  The promotional price of a product.
+         *  If a product is on sale, actual price (or promotional price)
+         *  is lower than regular price. In case product is not on sale,
+         *  promotional price is the same as regular price.
+         */
         @SerializedName("actual_price")
-        private String priceActual;
+        private String pricePromotional;
 
+        /**
+         * Price of a product in normal conditions
+         */
         @SerializedName("regular_price")
         private String priceRegular;
 
+        /**
+         *  Boolean which represents on sale status of a product.
+         */
         @SerializedName("on_sale")
         private boolean isOnSale;
 
+        /**
+         *  A list of all available sizes of the product
+         */
         @SerializedName("sizes")
         private List<Size> sizeList;
 
+        /**
+         *  The lower price (between promotional and regular) of the product,
+         *  in Double.
+         */
         private Double price;
 
         public Double getPrice() {
@@ -75,12 +108,12 @@ public class ResponseList {
             this.priceRegular = priceRegular;
         }
 
-        public String getPriceActual() {
-            return priceActual;
+        public String getPricePromotional() {
+            return pricePromotional;
         }
 
-        public void setPriceActual(String priceActual) {
-            this.priceActual = priceActual;
+        public void setPricePromotional(String pricePromotional) {
+            this.pricePromotional = pricePromotional;
         }
 
         public String getImageUrl() {
@@ -102,7 +135,7 @@ public class ResponseList {
         Product(Parcel in) {
             name = in.readString();
             imageUrl = in.readString();
-            priceActual = in.readString();
+            pricePromotional = in.readString();
             priceRegular = in.readString();
             isOnSale = in.readByte() != 0x00;
             if (in.readByte() == 0x01) {
@@ -122,7 +155,7 @@ public class ResponseList {
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(name);
             dest.writeString(imageUrl);
-            dest.writeString(priceActual);
+            dest.writeString(pricePromotional);
             dest.writeString(priceRegular);
             dest.writeByte((byte) (isOnSale ? 0x01 : 0x00));
             if (sizeList == null) {
@@ -148,14 +181,27 @@ public class ResponseList {
 
     }
 
+    /**
+     *  Class that provides information regarding the
+     *  size of the product.
+     */
     public static class Size implements Parcelable {
 
+        /**
+         *  Flag that tells if size is available or not
+         */
         @SerializedName("available")
         private boolean isAvailable;
 
+        /**
+         *  Size's name representation (e.g. PP, P, M, G, GG)
+         */
         @SerializedName("size")
         public String size;
 
+        /**
+         *  Serial number of the product and its size
+         */
         @SerializedName("sku")
         private String sku;
 

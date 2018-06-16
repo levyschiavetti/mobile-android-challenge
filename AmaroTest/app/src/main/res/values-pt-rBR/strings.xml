@@ -2,18 +2,19 @@
 <resources>
 
     <!--Samples-->
+    <string name="sample_product_name">Calca Jeans Azul</string>
     <string name="sample_only">Apenas</string>
     <string name="sample_product_price">R$ 299,00</string>
-
+    <string name="content_description_on_sale">Produto em promoção</string>
 
     <!--DetailActivity-->
     <string name="act_detail_on_sale">Promoção</string>
     <string name="act_detail_available_sizes">Disponível nos tamanhos</string>
     <string name="act_detail_iv_content_description">Imagem do produto</string>
-    <string name="act_main_switch_text">Exibir apenas promoções</string>
 
     <!--MainActivity-->
     <string name="act_main_title">Os mais vendidos da Amaro</string>
     <string name="act_main_feedback_offline">Algo deu errado.\n Verifique sua conexão e tente novamente</string>
+    <string name="act_main_switch_text">Exibir apenas promoções</string>
 
 </resources>

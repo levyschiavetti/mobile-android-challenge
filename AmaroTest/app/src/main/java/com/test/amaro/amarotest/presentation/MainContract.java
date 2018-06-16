@@ -1,6 +1,6 @@
 package com.test.amaro.amarotest.presentation;
 
-import com.test.amaro.amarotest.domain.ResponseList;
+import com.test.amaro.amarotest.domain.ProductListResponse;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface MainContract {
          * in RecyclerView
          * @param list
          */
-        void updateList(List<ResponseList.Product> list);
+        void updateList(List<ProductListResponse.Product> list);
 
         /**
          *  Change group of view's visibilities to match
@@ -42,7 +42,7 @@ public interface MainContract {
          * Start detail activity with given product details
          * @param product The product to be displayed in details
          */
-        void startDetailActivity(ResponseList.Product product, android.view.View ivProduct,
+        void startDetailActivity(ProductListResponse.Product product, android.view.View ivProduct,
                                  android.view.View tvName, android.view.View tvPrice);
     }
 
@@ -60,13 +60,13 @@ public interface MainContract {
          *  Get product list with onSale status
          * @return onSale list of products
          */
-        List<ResponseList.Product> getOnSaleProductList();
+        List<ProductListResponse.Product> getOnSaleProductList();
 
         /**
          * Get complete list of products
          * @return The complete list of products
          */
-        List<ResponseList.Product> getCompleteProductList();
+        List<ProductListResponse.Product> getCompleteProductList();
 
         /**
          * Iterates among provided product list in order to assign price
@@ -75,13 +75,13 @@ public interface MainContract {
          * @return The same list containing all products with prices also
          * in Double (beside Strings)
          */
-        List<ResponseList.Product> assignPriceValues(List<ResponseList.Product> list);
+        List<ProductListResponse.Product> assignPriceValues(List<ProductListResponse.Product> list);
 
         /**
          * Sort list by ascending order according to 'Price' property
          * @param list The list to be sorted
          * @return The sorted list
          */
-        List<ResponseList.Product> sortListByPrice(List<ResponseList.Product> list);
+        List<ProductListResponse.Product> sortListByPrice(List<ProductListResponse.Product> list);
     }
 }

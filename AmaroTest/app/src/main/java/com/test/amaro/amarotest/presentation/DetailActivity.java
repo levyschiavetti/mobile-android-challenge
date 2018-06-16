@@ -13,24 +13,46 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.test.amaro.amarotest.common.Constants;
 import com.test.amaro.amarotest.R;
-import com.test.amaro.amarotest.domain.ResponseList;
+import com.test.amaro.amarotest.domain.ProductListResponse;
 
 
 /**
- *  Activity responsible for displaying details of a product
+ *  Activity responsible for displaying details of a product.
  */
 public class DetailActivity extends AppCompatActivity {
 
-    private TextView tvToolbarTitle;
+    /**
+     *  TextView that presents Product's name
+     */
     private TextView tvProductName;
-    private TextView tvProductPromoPrice;
-    private TextView tvProductRegularPrice;
-    private TextView tvProductSaleStatus;
-    private ImageView ivProduct;
-    private LinearLayout containerSizes;
-    private Toolbar toolbar;
-    private ImageView ivBack;
 
+    /**
+     *  TextView that presents Product's Promotional Price
+     */
+    private TextView tvProductPromoPrice;
+
+    /**
+     *  TextView that presents Product's Regular Price
+     */
+    private TextView tvProductRegularPrice;
+
+    /**
+     *  TextView that presents Product's Sale Status
+     */
+    private TextView tvProductSaleStatus;
+
+    /**
+     *  ImageView that presents Product's illustration
+     */
+    private ImageView ivProduct;
+
+    /**
+     *  Viewgroup container that presents Product's available sizes
+     */
+    private LinearLayout containerSizes;
+
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +61,7 @@ public class DetailActivity extends AppCompatActivity {
         bindViews();
 
         if (getIntent().getParcelableExtra(Constants.EXTRA_PRODUCT) != null) {
-            ResponseList.Product product = getIntent().getParcelableExtra(Constants.EXTRA_PRODUCT);
+            ProductListResponse.Product product = getIntent().getParcelableExtra(Constants.EXTRA_PRODUCT);
             assignValuesToViews(product);
             generateAvailableSizes(product);
             setupOnSaleLayout(product);
@@ -81,21 +103,18 @@ public class DetailActivity extends AppCompatActivity {
         ivProduct = findViewById(R.id.act_detail_iv);
         containerSizes = findViewById(R.id.act_detail_container_sizes);
         tvProductSaleStatus = findViewById(R.id.act_detail_tv_sale);
-
-//        ivBack = findViewById(R.id.act_detail_back);
-//        tvToolbarTitle = findViewById(R.id.act_detail_tv_toolbar_title);
     }
 
 
     /**
-     * Set values to Displayed Views according to the product
+     * Set values to Displayed Views according to the product in
      * parameter
      * @param product The product which views are going to get values from
      */
-    private void assignValuesToViews(ResponseList.Product product) {
+    private void assignValuesToViews(ProductListResponse.Product product) {
 
         tvProductName.setText(product.getName());
-        tvProductPromoPrice.setText(product.getPriceActual());
+        tvProductPromoPrice.setText(product.getPricePromotional());
         tvProductRegularPrice.setText(product.getPriceRegular());
 
         RequestOptions opt = new RequestOptions()
@@ -111,14 +130,14 @@ public class DetailActivity extends AppCompatActivity {
 
     /**
      *  Iterates through all the sizes in a product
-     *  and create simple textviews to display each one of the
+     *  and create simple TextViews to display each one of the
      *  available ones.
      *
-     * @param product - Product to have generated sizes
+     * @param product - The Product to have generated sizes
      */
-    private void generateAvailableSizes(ResponseList.Product product) {
+    private void generateAvailableSizes(ProductListResponse.Product product) {
 
-        for (ResponseList.Size size : product.getSizeList()) {
+        for (ProductListResponse.Size size : product.getSizeList()) {
             if (size.isAvailable()) {
 
                 TextView textView = new TextView(this);
@@ -142,7 +161,7 @@ public class DetailActivity extends AppCompatActivity {
      *
      * @param product the product to be displayed
      */
-    private void setupOnSaleLayout(ResponseList.Product product) {
+    private void setupOnSaleLayout(ProductListResponse.Product product) {
 
         if (product.isOnSale()) {
             tvProductSaleStatus.setVisibility(View.VISIBLE);
