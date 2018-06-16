@@ -2,8 +2,6 @@
 
 Must have:
 
-
-- Review whole project and MVP (2h)
 - Check prices
 - Test on Ariane's device
 - Continue writing tests
@@ -12,10 +10,10 @@ Must have:
 
 Nice to have:
 
+- Apply animation to RecyclerView items when list changes (1.5h)
 - Launcher Icon (1h)
 - Add Try again button (1h)
 - Change image placeholder (1h)
 - Change sort icon
-- Apply animation to RecyclerView items when list changes (1.5h)
 - Splash Activity (1h)
 - Clickable Item (2h)

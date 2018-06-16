@@ -41,13 +41,16 @@ public interface MainContract {
         /**
          * Start detail activity with given product details
          * @param product The product to be displayed in details
+         * @param ivProduct Product ImageView element for animation
+         * @param tvName Product TextView name element for animation
+         * @param tvPrice Product TextView price element for animation
          */
         void startDetailActivity(ProductListResponse.Product product, android.view.View ivProduct,
                                  android.view.View tvName, android.view.View tvPrice);
     }
 
     /**
-     *  Responsabilities of Presenter
+     *  Responsibilities of Presenter
      */
     interface Presenter {
 

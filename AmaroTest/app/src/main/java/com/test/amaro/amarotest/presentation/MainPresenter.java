@@ -1,5 +1,7 @@
 package com.test.amaro.amarotest.presentation;
 
+import android.support.annotation.NonNull;
+
 import com.test.amaro.amarotest.common.Constants;
 import com.test.amaro.amarotest.domain.ProductService;
 import com.test.amaro.amarotest.domain.ProductListResponse;
@@ -79,7 +81,7 @@ public class MainPresenter implements MainContract.Presenter,
      * @see MainContract
      */
     @Override
-    public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
+    public void onResponse(@NonNull Call<ProductListResponse> call, @NonNull Response<ProductListResponse> response) {
 
         if (response.body() != null) {
 
@@ -99,7 +101,7 @@ public class MainPresenter implements MainContract.Presenter,
      * @see MainContract
      */
     @Override
-    public void onFailure(Call<ProductListResponse> call, Throwable t) {
+    public void onFailure(@NonNull Call<ProductListResponse> call, Throwable t) {
         view.toggleErrorState();
     }
 
