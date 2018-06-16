@@ -6,9 +6,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.espresso.assertion.ViewAssertions;
+
+import com.test.amaro.amarotest.presentation.DetailActivity;
+
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;

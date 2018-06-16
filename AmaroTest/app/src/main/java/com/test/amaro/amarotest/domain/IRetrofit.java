@@ -1,4 +1,6 @@
-package com.test.amaro.amarotest;
+package com.test.amaro.amarotest.domain;
+
+import com.test.amaro.amarotest.common.Constants;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,4 +1,4 @@
-package com.test.amaro.amarotest;
+package com.test.amaro.amarotest.common;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

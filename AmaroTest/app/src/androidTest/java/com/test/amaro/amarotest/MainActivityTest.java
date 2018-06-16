@@ -1,6 +1,5 @@
 package com.test.amaro.amarotest;
 
-import android.content.Intent;
 import android.support.test.runner.AndroidJUnit4;
 import org.junit.Before;
 import org.junit.Rule;
@@ -9,6 +8,9 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.not;
 import android.support.test.rule.ActivityTestRule;
+
+import com.test.amaro.amarotest.common.Util;
+import com.test.amaro.amarotest.presentation.MainActivity;
 
 import java.io.IOException;
 

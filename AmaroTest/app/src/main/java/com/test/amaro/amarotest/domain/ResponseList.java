@@ -1,4 +1,4 @@
-package com.test.amaro.amarotest;
+package com.test.amaro.amarotest.domain;
 
 import android.os.Parcel;
 import android.os.Parcelable;
