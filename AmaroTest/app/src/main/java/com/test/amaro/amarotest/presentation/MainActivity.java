@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.util.Pair;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.Switch;
@@ -78,7 +79,10 @@ public class MainActivity extends AppCompatActivity
      */
     private FloatingActionButton fab;
 
-
+    /**
+     *  Button responsible for performing call to API in case of error
+     */
+    private Button btnTryAgain;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,13 +93,7 @@ public class MainActivity extends AppCompatActivity
         setupListeners();
         setupToolbar();
         setupRecyclerView();
-
-        if (Util.isOnline(this)) {
-            presenter.performRequestToRetrieveProductList();
-            toggleLoadingState();
-        } else {
-            toggleErrorState();
-        }
+        defineStateToBePresented();
     }
 
 
@@ -126,6 +124,7 @@ public class MainActivity extends AppCompatActivity
      *  Bind Views from layout
      */
     private void bindViews() {
+        btnTryAgain = findViewById(R.id.act_main_btn_try_again);
         rv = findViewById(R.id.act_main_rv);
         toolbar = findViewById(R.id.act_main_tb);
         pbLoading = findViewById(R.id.act_main_pb);
@@ -140,6 +139,13 @@ public class MainActivity extends AppCompatActivity
      *  for events
      */
     private void setupListeners() {
+
+        btnTryAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                defineStateToBePresented();
+            }
+        });
 
         switchFilter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -205,6 +211,7 @@ public class MainActivity extends AppCompatActivity
         pbLoading.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
         toolbar.setVisibility(View.INVISIBLE);
+        btnTryAgain.setVisibility(View.INVISIBLE);
     }
 
 
@@ -219,6 +226,7 @@ public class MainActivity extends AppCompatActivity
         pbLoading.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.INVISIBLE);
         toolbar.setVisibility(View.INVISIBLE);
+        btnTryAgain.setVisibility(View.VISIBLE);
     }
 
 
@@ -233,5 +241,26 @@ public class MainActivity extends AppCompatActivity
         pbLoading.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.VISIBLE);
         toolbar.setVisibility(View.VISIBLE);
+        btnTryAgain.setVisibility(View.INVISIBLE);
+    }
+
+
+    /**
+     *  Define which views user is going to see, according to their
+     *  connection state at the moment. If user is connected, a call
+     *  to the API is going to be performed and data is going to
+     *  be presented.
+     *  If user has no connection, error state is going to be
+     *  presented.
+     */
+    public void defineStateToBePresented() {
+
+        toggleLoadingState();
+
+        if (Util.isOnline(this)) {
+            presenter.performRequestToRetrieveProductList();
+        } else {
+            toggleErrorState();
+        }
     }
 }

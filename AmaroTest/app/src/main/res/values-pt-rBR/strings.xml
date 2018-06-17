@@ -14,6 +14,7 @@
 
     <!--MainActivity-->
     <string name="act_main_title">Os mais vendidos da Amaro</string>
+    <string name="act_main_btn_try_again">Tentar de novo</string>
     <string name="act_main_feedback_offline">Algo deu errado.\n Verifique sua conexão e tente novamente</string>
     <string name="act_main_switch_text">Exibir apenas promoções</string>
 

@@ -12,6 +12,7 @@
     <string name="act_main_title">Amaro\'s all-time best-sellers</string>
     <string name="act_main_feedback_offline">Something went wrong.\nCheck your network and try again</string>
     <string name="act_main_switch_text">Display on sale products only</string>
+    <string name="act_main_btn_try_again">Try Again</string>
 
 
     <!--DetailActivity-->

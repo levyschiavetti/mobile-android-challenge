@@ -51,6 +51,15 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp" />
 
+    <Button
+        android:id="@+id/act_main_btn_try_again"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/act_main_tv_error"
+        android:text="@string/act_main_btn_try_again"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <ProgressBar
         android:id="@+id/act_main_pb"
         android:layout_width="wrap_content"
