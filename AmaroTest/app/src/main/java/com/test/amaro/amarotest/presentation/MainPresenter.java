@@ -83,7 +83,8 @@ public class MainPresenter implements MainContract.Presenter,
     @Override
     public void onResponse(@NonNull Call<ProductListResponse> call, @NonNull Response<ProductListResponse> response) {
 
-        if (response.body() != null) {
+        if (response.isSuccessful() &&
+            response.body() != null) {
 
             ProductListResponse productListResponse = response.body();
 
@@ -93,6 +94,8 @@ public class MainPresenter implements MainContract.Presenter,
                 view.updateList(completeProductList);
                 view.toggleNormalState();
             }
+        } else {
+            view.toggleErrorState();
         }
     }
 
