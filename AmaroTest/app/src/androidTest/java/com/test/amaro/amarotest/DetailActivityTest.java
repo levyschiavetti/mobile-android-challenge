@@ -29,10 +29,4 @@ public class DetailActivityTest {
         onView(withId(R.id.act_detail_tv_name)).check(matches(isDisplayed()));
         onView(withId(R.id.act_detail_tv_regular_price)).check(matches(isDisplayed()));
     }
-
-    @Test
-    public void whenOnSaleProduct_shouldDisplayViewSales() {
-
-
-    }
 }

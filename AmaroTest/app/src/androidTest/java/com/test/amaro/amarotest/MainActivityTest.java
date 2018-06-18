@@ -36,8 +36,9 @@ public class MainActivityTest {
     private MockWebServer serverMock;
 
     @Before
-    public void setup() {
+    public void setup() throws IOException {
         serverMock = new MockWebServer();
+        serverMock.start();
     }
 
     @Test
@@ -53,29 +54,18 @@ public class MainActivityTest {
     }
 
 
-    @Test
-    public void when_Connected_displayNormalState() {
-
-        if (Util.isOnline(actTestRule.getActivity())) {
-            onView(withId(R.id.act_main_tv_error)).check(matches(not(isDisplayed())));
-            onView(withId(R.id.act_main_fab)).check(matches(isDisplayed()));
-            onView(withId(R.id.act_main_rv)).check(matches(isDisplayed()));
-            onView(withId(R.id.act_main_pb)).check(matches(isDisplayed()));
-            onView(withId(R.id.act_main_tb)).check(matches(isDisplayed()));
-        }
-    }
-
 
     @Test
-    public void testNet() throws IOException, Exception {
+    public void testRequestAPI() throws IOException, Exception {
 
         serverMock.enqueue(new MockResponse()
-                                .setBody("Levy Schiavetti"));
-        serverMock.start();
+                                .setBody("Test"));
+
         HttpUrl url = serverMock.url("amaro/api");
 
         String responseBody = performRequest(new OkHttpClient(), url);
-        System.out.println("Response is " + responseBody);
+
+        System.out.println("Test Response is " + responseBody);
     }
 
     public String performRequest(OkHttpClient client, HttpUrl serverUrl) throws Exception {
